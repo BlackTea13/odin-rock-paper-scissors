@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.scores {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+
+    padding: 50px;
+}
+
+.result {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+
+    padding: 50px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+

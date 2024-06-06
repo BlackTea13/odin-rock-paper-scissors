@@ -3,10 +3,46 @@
 
     <head>
         <title>Yo</title>
+        <link rel="stylesheet" href="stylesheet.css">
+        <script src="main.js" defer></script>
     </head>
 
     <body>
-        <script src="main.js"></script>
+        <div class="scores">
+            <div class="human-score">
+                <span class="human-score-text">
+                    Your Score:
+                </span>
+                <span class="human-score-point">
+                    0
+                </span>
+            </div>
+            <div class="computer-score">
+                <span class="computer-score-text">
+                    Computer Score:
+                </span>
+                <span class="computer-score-point">
+                    0
+                </span>
+            </div>
+        </div>
+
+        <div class="result">
+            <span>
+                <span>You Played:</span>
+                <span class="human-play"></span>
+            </span>
+            <span>
+                <span>Computer Played:</span>
+                <span class="computer-play"></span>
+            </span>
+        </div>
+
+        <div class="buttons">
+            <button>Rock</button>
+            <button>Paper</button>
+            <button>Scissors</button>
+        </div>
     </body>
 
 </html>

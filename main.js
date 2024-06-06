@@ -4,70 +4,63 @@ const plays = [
     "scissors"
 ]
 
+let humanScoreSpan = document.querySelector(".scores .human-score-point")
+let computerScoreSpan= document.querySelector(".scores .computer-score-point")
+
+function incrementScore(isHumanScore) {
+    if (isHumanScore) {
+        let currentScore = parseInt(humanScoreSpan.textContent)
+        humanScoreSpan.textContent = (currentScore + 1).toString()
+    }
+    else {
+        let currentScore = parseInt(computerScoreSpan.textContent)
+        computerScoreSpan.textContent = (currentScore + 1).toString()
+    }
+}
+
 function getComputerChoice() {
     return plays[Math.floor(Math.random() * plays.length)]
 }
 
-function getHumanChoice() {
-    let input = prompt("What will you play?").toLowerCase();
-    console.log("you chose " + input)
-    return input
+function getHumanChoice(event) {
+    return event.target.textContent.toLowerCase()
 }
 
-function printChoices(humanChoice, computerChoice) {
-    console.log("You played: " + humanChoice)
-    console.log("I play: " + computerChoice)
+function displayPlays(humanPlay, computerPlay) {
+    let humanPlaySpan = document.querySelector(".result .human-play")
+    let computerPlaySpan = document.querySelector(".result .computer-play")
+
+    humanPlaySpan.textContent = humanPlay
+    computerPlaySpan.textContent = computerPlay
 }
 
-function playRound() {
+function playRound(event) {
     let computerChoice  = getComputerChoice()
-    let humanChoice = getHumanChoice()
+    let humanChoice = getHumanChoice(event)
 
-    printChoices(humanChoice, computerChoice)
+    displayPlays(humanChoice, computerChoice)
 
     if (humanChoice === computerChoice) {
-        console.log("It's a draw!")
+        return
     }
-    else if (humanChoice === "rock") {
-        if (computerChoice === "scissors") {
-            console.log("You won!")
-            return 1
-        }
-        console.log("You lost!")
+
+    let rockWin = humanChoice === "rock" && computerChoice === "scissors"
+    let paperWin = humanChoice === "paper" && computerChoice === "rock"
+    let scissorsWin = humanChoice === "scissors" && computerChoice === "paper"
+
+    if ( rockWin || paperWin || scissorsWin ) {
+        incrementScore(true)
     }
-    else if (humanChoice === "paper") {
-        if (computerChoice === "rock") {
-            console.log("You won!")
-            return 1
-        }
-        console.log("You lost!")
+    else {
+        incrementScore(false)
     }
-    else if (humanChoice === "scissors") {
-        if (computerChoice === "paper") {
-            console.log("You won!")
-            return 1
-        }
-        console.log("You lost!")
-    }
+
     return 0
 }
 
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        if (playRound() === 1) {
-            playerScore += 1
-        }
-        else {
-            computerScore += 1
-        }
-    }
-    console.log("Game Over")
-    console.log("Player Score: " + playerScore)
-    console.log("Computer Score: " + computerScore)
-}
+document.querySelectorAll("button").forEach((button)=> {
+    button.addEventListener("click", playRound)
+})
 
-let playerScore = 0
-let computerScore = 0
 
-playGame()
 
