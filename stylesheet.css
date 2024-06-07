@@ -8,15 +8,15 @@ body {
 .scores {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 150px;
 
     padding: 50px;
 }
 
-.result {
+.plays {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 150px;
 
     padding: 50px;
 }
